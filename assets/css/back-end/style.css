@@ -1,0 +1,61 @@
+.mail .mail-item .mail-btn-delete {
+    margin-left: 10px;
+}
+.mail .mail-item .mail-btn-delete a span{
+     margin: 0 auto;
+     vertical-align: middle;
+}
+.mail .mail-item .mail-reply{
+    margin-right: 10px;
+}
+.mail .mail-item:nth-child(2n) {
+    background: #fff;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+.mail .mail-item.mail-unread{
+    background: #f0ffff;
+}
+.page-content-wrap .coach-profile .panel-heading .cover-img{
+    width: 100%;
+    height: 350px
+}
+.page-content-wrap .coach-profile .panel-body .profile-img{
+    width: 200px;
+    margin: -160px 0 0 20px
+}
+.page-content-wrap .coach-profile .panel-body .profile-name{
+    margin-left: 230px;
+}
+.page-content-wrap .coach-profile .tabs-profile .tabs{
+    margin-top: 0px;
+}
+
+@media screen and (max-width: 768px){
+    .page-content-wrap .coach-profile .panel-heading .cover-img{
+        width: 100%;
+        height: 200px
+    }
+    .page-content-wrap .coach-profile .panel-body .profile-img{
+        width: 150px;
+        margin: -100px 0 0 20px
+    }
+    .page-content-wrap .coach-profile .panel-body .profile-name{
+        width: 100%;
+        margin-left: 0px;
+        text-align: center;
+    }
+    .page-content-wrap .coach-profile .panel-body .profile-name h2{
+        font-size: 18px;
+    }
+    .page-content-wrap .coach-profile .nav-tabs-vertical .nav-tabs{
+        width: 100px;
+    }
+    .page-content-wrap .coach-profile .nav-tabs-vertical .tab-content{
+        margin-left: 100px;
+    }
+    .pull-right.group-action a {
+        margin-top: 10px;
+        width: 100%;
+    }
+}

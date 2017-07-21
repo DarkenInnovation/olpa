@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+@import "jquery-ui.min.css";
+@import "bootstrap.min.css";
+@import "theme-default.css";
+@import "jquery.mCustomScrollbar.css";
+@import "animate.min.css";
+@import "font-awesome.min.css";
+
+div.dataTables_wrapper div.dataTables_processing {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    margin-left: -100px;
+    margin-top: -26px;
+    text-align: center;
+    padding: 1em 0;
+    background: #eeeeee;
+    border-style: outset;
+}
+.page-content-wrap .dataTables_wrapper .input-sm {
+    padding: 0 10px;
+}
+
+.x-navigation.x-navigation-horizontal {
+    background-color: #ccc;
+}
+.x-navigation.x-navigation-horizontal p {
+    padding: 12px 5px;
+    font-size: 16px;
+}
+
+.page-container .page-content {
+    background-color: #e4e6ff;
+}
