@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="icon" href="<?php echo base_url(); ?>assets/images/icon.png" type="image/x-icon"/>
+    <link rel="icon" href="<?php echo base_url(); ?>assets/img/logo.png" type="image/x-icon"/>
 
     <!-- CSS INCLUDE -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/style.css'); ?>"/>
@@ -21,9 +21,17 @@
     <div class="page-sidebar">
         <!-- START X-NAVIGATION -->
         <ul class="x-navigation">
-            <li class="xn-logo">
-                <a href="admin">OLPA-BI</a>
+            <li class="xn-logo hidden-lg hidden-md">
+                <a href="admin" class="">OLPA-BI</a>
                 <a href="#" class="x-navigation-control"></a>
+            </li>
+
+            <li class="xn-profile">
+                <div class="profile">
+                    <div class="profile-image">
+                        <img src="<?php echo base_url('assets/img/logo.png');?>" alt="John Doe"/>
+                    </div>
+                </div>
             </li>
             <li class="xn-openable <?php if(isset($menu)){if($menu == 'dashboard') { echo 'active'; }} ?>">
                 <a href="#"><span class="fa fa-dashboard"></span> <span class="xn-text">Dashboard</span></a>

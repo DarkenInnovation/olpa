@@ -50,7 +50,13 @@ $route['admin/grade-section/select'] = 'admin/gradesection_select';
 $route['admin/grade-section/update'] = 'admin/gradesection_update';
 $route['admin/grade-section/edit/(:any)'] = 'admin/gradesection_edit/$1';
 
-$route['admin/polling-question'] = 'admin/index';
+$route['admin/polling-question'] = 'polling/index';
+$route['admin/polling-question/list'] = 'polling/polling_list';
+$route['admin/polling-question/create'] = 'polling/create';
+$route['admin/polling-question/update'] = 'polling/update';
+$route['admin/polling-question/edit/(:any)'] = 'polling/edit/$1';
+$route['admin/polling-question/status/(:any)'] = 'polling/status/$1';
+
 $route['admin/add-polling'] = 'admin/index';
 $route['admin/coc-request'] = 'admin/index';
 $route['admin/total-votes'] = 'admin/index';

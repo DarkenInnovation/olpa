@@ -1,5 +1,5 @@
 <?php
- class Position_model extends CI_Model {
+ class Polling_model extends CI_Model {
 
      var $column_order = array('id','name',null); //set column field database for datatable orderable
      var $column_search = array('name'); //set column field database for datatable searchable just firstname , lastname , address are searchable
@@ -47,7 +47,10 @@
          if($_POST['length'] != -1)
              $this->db->limit($_POST['length'], $_POST['start']);
 
-         $query = $this->db->get('position');
+         $this->db->select('polling_question.*', FALSE);
+         $this->db->select('position.name as position', FALSE);
+         $this->db->join('position', 'polling_question.position_id = position.id');
+         $query = $this->db->get('polling_question');
          return $query->result();
      }
 
@@ -55,43 +58,48 @@
      function count_filtered()
      {
          $this->_get_datatables_query();
-         $query = $this->db->get('position');
+         $query = $this->db->get('polling_question');
          return $query->num_rows();
      }
 
      public function count_all()
      {
-         $this->db->from('position');
+         $this->db->from('polling_question');
          return $this->db->count_all_results();
      }
 
      public function create($data) {
-         $this->db->insert('position', $data);
+         $this->db->set('time', 'NOW()', FALSE);
+         $this->db->set('date', 'NOW()', FALSE);
+         $this->db->insert('polling_question', $data);
          return $this->db->insert_id();
      }
 
      public function get_by_id($id){
-         $this->db->where('id',$id);
-         $query = $this->db->get('position');
+         $this->db->select('polling_question.*', FALSE);
+         $this->db->select('position.name as position', FALSE);
+         $this->db->join('position', 'polling_question.position_id = position.id');
+         $this->db->where('polling_question.id',$id);
+         $query = $this->db->get('polling_question');
          return $query->row();
      }
 
      public function update($where, $data)
      {
-         $this->db->update('position', $data, $where);
+         $this->db->update('polling_question', $data, $where);
          return $this->db->affected_rows();
      }
 
      function get_list()
      {
-         $query = $this->db->get('position');
+         $query = $this->db->get('polling_question');
          return $query->result();
      }
 
      //check username exists
-     public function check_position_exists($position){
-         $query = $this->db->get_where('position', array(
-             'name' => $position
+     public function check_polling_question_exists($polling_question){
+         $query = $this->db->get_where('polling_question', array(
+             'name' => $polling_question
          ));
          if(empty($query->row_array())){
              return true;

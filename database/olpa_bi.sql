@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2017 at 05:51 PM
+-- Generation Time: Jul 23, 2017 at 06:38 AM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.24
 
@@ -45,7 +45,9 @@ INSERT INTO `candidate` (`id`, `student_id`, `position_id`, `partylist_id`, `sta
 (2, 2, 3, 8, 'inactive', '19:38:59', '2017-07-13'),
 (3, 3, 14, 8, 'active', '20:00:49', '2017-07-13'),
 (4, 11, 27, 11, 'inactive', '20:02:53', '2017-07-13'),
-(5, 2, 3, 9, 'active', '22:01:32', '2017-07-13');
+(5, 5, 27, 11, 'active', '22:01:32', '2017-07-13'),
+(6, 2, 15, 9, 'active', '12:56:48', '2017-07-21'),
+(8, 10, 29, 9, 'inactive', '13:14:42', '2017-07-21');
 
 -- --------------------------------------------------------
 
@@ -96,6 +98,30 @@ INSERT INTO `partylist` (`id`, `name`, `time`, `date`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `polling_question`
+--
+
+CREATE TABLE `polling_question` (
+  `id` int(11) NOT NULL,
+  `question` varchar(255) DEFAULT NULL,
+  `position_id` int(11) DEFAULT NULL,
+  `status` varchar(80) DEFAULT NULL,
+  `time` time DEFAULT NULL,
+  `date` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `polling_question`
+--
+
+INSERT INTO `polling_question` (`id`, `question`, `position_id`, `status`, `time`, `date`) VALUES
+(1, 'sdfsdfsf', 15, 'inactive', '01:11:12', '2017-07-22'),
+(2, 'Darkend', 18, 'active', NULL, NULL),
+(3, 'daskdkasj as da', 3, 'active', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `position`
 --
 
@@ -141,7 +167,7 @@ INSERT INTO `position` (`id`, `name`) VALUES
 (42, 'asdasdddd'),
 (43, 'pindar'),
 (44, 'darken123'),
-(45, NULL);
+(45, 'qweqweqw');
 
 -- --------------------------------------------------------
 
@@ -232,6 +258,12 @@ ALTER TABLE `partylist`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `polling_question`
+--
+ALTER TABLE `polling_question`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `position`
 --
 ALTER TABLE `position`
@@ -257,7 +289,7 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `candidate`
 --
 ALTER TABLE `candidate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `grade_section`
 --
@@ -268,6 +300,11 @@ ALTER TABLE `grade_section`
 --
 ALTER TABLE `partylist`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `polling_question`
+--
+ALTER TABLE `polling_question`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `position`
 --

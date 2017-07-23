@@ -3,8 +3,8 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <strong>Student</strong>
-                    <button class="btn btn-success pull-right" onclick="add_polling()"><i class="glyphicon glyphicon-plus"></i> Add Position</button>
+                    <strong>Polling Question</strong>
+                    <button class="btn btn-success pull-right" onclick="add_polling()"><i class="glyphicon glyphicon-plus"></i> Add Polling Question</button>
                 </div>
                 <div class="panel-body">
                     <table id="table" class="table table-striped table-bordered">
@@ -13,7 +13,7 @@
                             <th>ID</th>
                             <th>Question</th>
                             <th>Position</th>
-                            <th>Student</th>
+                            <th>Status</th>
                             <th style="width:100px;">Action</th>
                         </tr>
                         </thead>
@@ -67,7 +67,7 @@
 
             // Load data for the table's content from an Ajax source
             "ajax": {
-                "url": "<?php echo site_url('/admin/position/list')?>",
+                "url": "<?php echo site_url('/admin/polling-question/list')?>",
                 "type": "POST"
             },
 
@@ -100,30 +100,52 @@
         $('.form-group').removeClass('has-error'); // clear error class
         $('.help-block').empty(); // clear error string
         $('#modal_form').modal('show'); // show bootstrap modal
-        $('.modal-title').text('Add Position'); // Set Title to Bootstrap modal title
+        $('.modal-title').text('Add Polling Question'); // Set Title to Bootstrap modal title
+        $('#position_id').empty();
+        load_position();
     }
 
 
-    function edit_polling(id)
+    function edit(id)
     {
         save_method = 'update';
         $('#form')[0].reset(); // reset form on modals
         $('.form-group').removeClass('has-error'); // clear error class
         $('.help-block').empty(); // clear error string
-
+        $('#position_id').empty();
 
         //Ajax Load data from ajax
         $.ajax({
-            url : "<?php echo site_url('/admin/position/edit')?>/" + id,
+            url : "<?php echo site_url('/admin/polling-question/edit')?>/" + id,
             type: "GET",
             dataType: "JSON",
             success: function(data)
             {
-
+                load_position();
                 $('[name="id"]').val(data.id); // put data ID to ID input box
-                $('[name="position"]').val(data.name); // put data name to position input box
+                $('[name="question"]').val(data.question); // put data name to position input box
+                $('#position_id').prepend($('<option value="' + data.position_id + '" selected>' + data.position + '</option>'));
                 $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
-                $('.modal-title').text('Edit Position'); // Set title to Bootstrap modal title
+                $('.modal-title').text('Edit Polling Question'); // Set title to Bootstrap modal title
+
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('Error get data from ajax');
+            }
+        });
+    }
+    function status(id, status)
+    {
+        //Ajax Load data from ajax
+        $.ajax({
+            url : "<?php echo site_url('/admin/polling-question/status')?>/" + id,
+            type: "POST",
+            dataType: "JSON",
+            success: function(data)
+            {
+                alert(id + status);
+                reload_table();
 
             },
             error: function (jqXHR, textStatus, errorThrown)
@@ -146,9 +168,9 @@
         var url;
 
         if(save_method == 'add') {
-            url = "<?php echo site_url('/admin/position/create')?>";
+            url = "<?php echo site_url('/admin/polling-question/create')?>";
         } else {
-            url = "<?php echo site_url('/admin/position/update')?>";
+            url = "<?php echo site_url('/admin/polling-question/update')?>";
         }
 
         // ajax adding data to database
@@ -192,6 +214,25 @@
             }
         });
     }
+    function load_position(){
+        $.ajax({
+            url: '<?php echo site_url('/admin/position/select')?>',
+            type: "GET",
+            dataType: "JSON",
+            success : function(data) {
+                if(data.success) {
+                    $('#position_id').append(data.options);
+                }
+                else {
+                    alert('Failed');
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('Error get data from database');
+            }
+        });
+    }
 </script>
 
 <!-- Bootstrap modal -->
@@ -200,7 +241,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title">Position Form</h3>
+                <h3 class="modal-title">Polling Question Form</h3>
             </div>
             <div class="modal-body form">
                 <form action="#" id="form" class="form-horizontal">
@@ -210,7 +251,15 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3">Question</label>
                                 <div class="col-md-9">
-                                    <input name="position" placeholder="Position" class="form-control" type="text">
+                                    <input name="question" placeholder="Question" class="form-control" type="text">
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Position:</label>
+                                <div class="col-md-9">
+                                    <select id="position_id" name="position_id" class="form-control">
+                                    </select>
                                     <span class="help-block"></span>
                                 </div>
                             </div>
