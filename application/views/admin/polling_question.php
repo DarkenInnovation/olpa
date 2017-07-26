@@ -138,21 +138,19 @@
     function status(id, status)
     {
         //Ajax Load data from ajax
-        $.ajax({
-            url : "<?php echo site_url('/admin/polling-question/status')?>/" + id,
-            type: "POST",
-            dataType: "JSON",
-            success: function(data)
-            {
-                alert(id + status);
-                reload_table();
-
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-                alert('Error get data from ajax');
-            }
-        });
+        if (confirm("Are you sure to change the status?") == true) {
+            $.ajax({
+                url: "<?php echo site_url('/admin/polling-question/status')?>/" + id + "/" + status,
+                type: "POST",
+                dataType: "JSON",
+                success: function (data) {
+                    reload_table();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert('Error get data from ajax');
+                }
+            });
+        }
     }
 
     function reload_table()

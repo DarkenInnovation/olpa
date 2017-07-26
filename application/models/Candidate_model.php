@@ -55,7 +55,6 @@
          $this->db->join('student', 'candidate.student_id = student.id');
          $this->db->join('position', 'candidate.position_id = position.id');
          $this->db->join('partylist', 'candidate.partylist_id = partylist.id');
-         $this->db->where('candidate.status','active');
          $query = $this->db->get($this->table);
          return $query->result();
      }
@@ -90,7 +89,6 @@
          $this->db->join('position', 'candidate.position_id = position.id');
          $this->db->join('partylist', 'candidate.partylist_id = partylist.id');
          $this->db->where('candidate.id',$id);
-         $this->db->where('candidate.status','active');
          $query = $this->db->get($this->table);
          return $query->row();
      }

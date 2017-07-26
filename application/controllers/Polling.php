@@ -69,11 +69,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $data = $this->polling_model->get_by_id($id);
             echo json_encode($data);
         }
-        public function status($id)
+        public function status($id, $status)
         {
-            $data = Array (
-                'status' => 'active',
-            );
+            if ($status == 'active'){
+                $data = Array(
+                    'status' => 'inactive',
+                );
+            } else {
+                $data = Array(
+                    'status' => 'active',
+                );
+            }
             $this->polling_model->update(array('id' => $id), $data);
 
             echo json_encode(array("status" => TRUE));

@@ -16,6 +16,7 @@
                             <th>Partylist</th>
                             <th>Time</th>
                             <th>Date</th>
+                            <th>Status</th>
                             <th style="width:100px;">Action</th>
                         </tr>
                         </thead>
@@ -160,6 +161,26 @@
                 alert('Error get data from ajax');
             }
         });
+    }
+    function status(id, status)
+    {
+        //Ajax Load data from ajax
+        if (confirm("Are you sure to Inactive this candidate?") == true) {
+            $.ajax({
+                url : "<?php echo site_url('/admin/candidate/status')?>/" + id + "/" + status,
+                type: "POST",
+                dataType: "JSON",
+                success: function(data)
+                {
+                    reload_table();
+                },
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+                    alert('Error get data from ajax');
+                }
+            });
+        } else {
+        }
     }
 
     function reload_table()

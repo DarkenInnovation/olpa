@@ -25,9 +25,13 @@ $route['admin/ssg/edit/(:any)'] = 'admin/ssg_edit/$1';
 
 $route['admin/candidate'] = 'candidates/index';
 $route['admin/candidate/list'] = 'candidates/candidates_list';
+$route['admin/candidate/coc-list'] = 'candidates/coc_list';
 $route['admin/candidate/create'] = 'candidates/create';
 $route['admin/candidate/update'] = 'candidates/update';
+$route['admin/candidate/update/remarks'] = 'candidates/remarks';
 $route['admin/candidate/edit/(:any)'] = 'candidates/edit/$1';
+$route['admin/candidate/status/(:any)/(:any)'] = 'candidates/status/$1/$2';
+$route['admin/coc-request'] = 'candidates/coc';
 
 $route['admin/position'] = 'admin/position';
 $route['admin/position/list'] = 'admin/position_list';
@@ -55,10 +59,9 @@ $route['admin/polling-question/list'] = 'polling/polling_list';
 $route['admin/polling-question/create'] = 'polling/create';
 $route['admin/polling-question/update'] = 'polling/update';
 $route['admin/polling-question/edit/(:any)'] = 'polling/edit/$1';
-$route['admin/polling-question/status/(:any)'] = 'polling/status/$1';
+$route['admin/polling-question/status/(:any)/(:any)'] = 'polling/status/$1/$2';
 
 $route['admin/add-polling'] = 'admin/index';
-$route['admin/coc-request'] = 'admin/index';
 $route['admin/total-votes'] = 'admin/index';
 $route['admin/year-and-section-votes'] = 'admin/index';
 
